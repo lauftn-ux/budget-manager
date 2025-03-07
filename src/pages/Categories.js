@@ -29,13 +29,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AppContext } from '../context/AppContext';
 
-// Liste d'icônes disponibles
-const availableIcons = [
-  'home', 'restaurant', 'directions_car', 'local_hospital', 'shopping_bag',
-  'sports_esports', 'school', 'work', 'flight_takeoff', 'fitness_center',
-  'local_bar', 'theaters', 'payments', 'account_balance', 'help'
-];
-
 // Couleurs prédéfinies
 const colorOptions = [
   '#4caf50', '#2196f3', '#ff9800', '#f44336', '#9c27b0', 
@@ -273,22 +266,6 @@ const Categories = () => {
                       mr: 1
                     }} />
                     {color}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            
-            <FormControl fullWidth margin="normal">
-              <InputLabel>Icône</InputLabel>
-              <Select
-                name="icon"
-                value={categoryForm.icon}
-                label="Icône"
-                onChange={handleCategoryFormChange}
-              >
-                {availableIcons.map((icon) => (
-                  <MenuItem key={icon} value={icon}>
-                    {icon}
                   </MenuItem>
                 ))}
               </Select>
