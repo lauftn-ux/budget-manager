@@ -25,7 +25,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Cell
 } from 'recharts';
 import { AppContext } from '../context/AppContext';
 
@@ -311,8 +312,7 @@ const CategoryStats = () => {
                           <TableCell align="right">{category.count}</TableCell>
                           <TableCell align="right">{formatCurrency(category.average)}</TableCell>
                         </TableRow>
-                      ))
-                    }
+                      ))}
                   </TableBody>
                 </Table>
               </TableContainer>
