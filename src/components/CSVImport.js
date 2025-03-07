@@ -50,8 +50,8 @@ const CSVImport = () => {
       });
       setOpenDialog(true);
     } catch (err) {
-      console.error('Erreur d'importation :', err);
-      setError('Erreur lors de l'importation du fichier. Vérifiez le format CSV.');
+      console.error("Erreur d'importation :", err);
+      setError("Erreur lors de l'importation du fichier. Vérifiez le format CSV.");
     } finally {
       setIsLoading(false);
       setFile(null);
