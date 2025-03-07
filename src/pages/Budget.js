@@ -32,18 +32,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import InfoIcon from '@mui/icons-material/Info';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip as RechartsTooltip,
-  Legend,
-  ResponsiveContainer
-} from 'recharts';
-
 import { AppContext } from '../context/AppContext';
+import BudgetCharts from '../components/BudgetCharts';
 
 const Budget = () => {
   const { categories, transactions } = useContext(AppContext);
@@ -218,21 +208,6 @@ const Budget = () => {
     setBudgetToDelete(null);
   };
 
-  // Préparer les données pour le graphique
-  const prepareChartData = () => {
-    const data = budgets.map(budget => {
-      const category = categories.find(c => c.id === parseInt(budget.category)) || { name: 'Inconnue' };
-      const currentSpending = calculateCurrentSpending(parseInt(budget.category));
-      return {
-        name: category.name,
-        budget: parseFloat(budget.amount),
-        spending: currentSpending,
-        remaining: Math.max(0, parseFloat(budget.amount) - currentSpending)
-      };
-    });
-    return data;
-  };
-
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
@@ -289,36 +264,16 @@ const Budget = () => {
               </Card>
             </Grid>
           </Grid>
-
-          {/* Graphique de budget */}
-          <Paper sx={{ p: 2, mb: 3 }}>
-            <Typography variant="h6" gutterBottom>
-              Budget vs. Dépenses
-            </Typography>
-            <Box sx={{ height: 400 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={prepareChartData()}
-                  margin={{
-                    top: 20,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <RechartsTooltip formatter={(value) => formatCurrency(value)} />
-                  <Legend />
-                  <Bar dataKey="budget" name="Budget" fill="#8884d8" />
-                  <Bar dataKey="spending" name="Dépenses" fill="#82ca9d" />
-                </BarChart>
-              </ResponsiveContainer>
-            </Box>
-          </Paper>
         </>
       )}
+
+      {/* Visualisations */}
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Visualisations
+        </Typography>
+        <BudgetCharts />
+      </Box>
 
       {/* Tableau des budgets */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
